@@ -23,14 +23,26 @@
 
       function checkLoginState() {
         FB.getLoginStatus(function(response){
+          //userID = response.authResponses.userID;
           statusChangeCallback(response);
         });
       }
 
+      FB.api(
+          "/{user-id}/photos",
+          function (response) {
+            if (response && !response.error) {
+              /* handle the result */
+            }
+          }
+      );
+
     </script>
 
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-    </fb:login-button>
+    <div style="align: center">
+      <fb:login-button scope="user_photos" onlogin="checkLoginState();">
+      </fb:login-button>
+    </div>
 
     <div
       class="fb-like"
